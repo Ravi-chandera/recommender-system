@@ -1,62 +1,64 @@
-# Email Marketing Content Assistant
+# MovieMuse - Movie Recommendation App
 
-Welcome to the **Email Marketing Content Assistant** project documentation. This tool empowers you to effortlessly create captivating email marketing campaigns tailored to your business needs. Craft engaging email sequences using AI-generated content, driven by the power of OpenAI's GPT-3.5-turbo language model.
+Welcome to MovieMuse, your ultimate movie recommendation app that helps you discover the perfect movie based on your preferences! Whether you're in the mood for a specific genre or looking for a movie to match your current emotions, MovieMuse has got you covered. Powered by DeepLake, Langchain, and Streamlit, our app uses advanced language modeling and a vector database to provide you with personalized movie recommendations from the top 1000 movies on IMDB.
 
-## Introduction
 
-The Email Marketing Content Assistant is a user-friendly web application that leverages OpenAI's advanced language model, GPT-3.5-turbo, to help you generate persuasive email sequences. Designed to streamline your marketing efforts, this tool enables you to create compelling email content aligned with your brand's voice and campaign objectives.
 
-## Inputs
+![MovieMuse](assets/image.png)
 
-To generate your email sequence, provide the following inputs:
+## Behind the Scenes
 
-1. **Business Information:** Provide details about your business, such as its name, type/niche, campaign goal, and audience demographics.
+1. **User Input**: To get started, the application collects input from the user regarding their current emotional state or the type of movie genre they wish to watch. You can express your emotions through a text input or choose a specific movie genre from the provided options.
 
-2. **Content Guidelines:** Specify the type of content you want in the emails and the key message you want to convey.
+2. **Emotion Encoding**: The emotions provided by the user are then sent to our Language Model (LLM). The LLM skillfully interprets and encodes these emotions, ensuring an accurate representation.
 
-3. **Email Structure:** Define the call to action (CTA) you want recipients to take.
+3. **Similarity Search**: Using the encoded emotions, MovieMuse performs a similarity search within our vector database, known as the "DeepLake Vector Store in LangChain." This vector database contains emotional embeddings of the top 1000 movies on IMDB.
 
-4. **Product/Service Information (If Applicable):** Describe your product or service details, features, and benefits.
+4. **Movie Selection**: From the pool of movies with the highest similarity scores, the app randomly selects a movie to recommend. To make the selection process more intuitive, the algorithm gives preference to movies with higher similarity scores, ensuring that the recommendation closely aligns with your emotional state or preferred genre.
 
-5. **Tone and Voice:** Share your website URL, communication tone, and brand voice to align the AI-generated content with your brand.
+5. **Movie Details**: Once the movie recommendation is generated, MovieMuse displays essential details about the chosen movie, including its title, genre, and IMDb rating. You will also find a brief summary and trailer to help you make an informed decision.
 
-6. **Storyline Progression:** Describe how you want the emails to build on each other to create a compelling narrative.
+### How to Run It
 
-7. **Pain Points and Solutions:** Identify the pain points your emails should address and the corresponding solutions presented.
+Follow these steps to run MovieMuse on your local machine:
 
-## Outputs
+1. Create a virtual environment to isolate the project dependencies.
+   ```
+   python -m venv moviemuse-venv
+   ```
 
-The assistant generates a sequence of five emails tailored to your inputs:
+2. Activate the virtual environment.
+   - On Windows:
+     ```
+     moviemuse-venv\Scripts\activate
+     ```
+   - On macOS and Linux:
+     ```
+     source moviemuse-venv/bin/activate
+     ```
 
-- Email 1: Introduction and Pain Point
-- Email 2: Building on Pain Point
-- Email 3: Solution Presentation
-- Email 4: Benefits and Social Proof
-- Email 5: Call to Action and Conclusion
+3. Install the required libraries from the `requirements.txt` file.
+   ```
+   pip install -r requirements.txt
+   ```
 
-Each email is designed to engage your audience and lead them through the marketing funnel.
+4. Create an `.env` file in the root directory of the project with the following format:
+   ```
+   ACTIVELOOP_TOKEN="YOUR_ACTIVELOOP_TOKEN"
+   OPEN_AI_API="YOUR_OPEN_AI_API_KEY"
+   ```
 
-**NOTE: You can find a more detailed description of the inputs and outputs [here](docs/features.md)**
+   Make sure to replace `YOUR_ACTIVELOOP_TOKEN` and `YOUR_OPEN_AI_API_KEY` with your actual API keys.
 
-## Getting Started
+5. Run the Streamlit app:
+   ```
+   streamlit run src/app.py
+   ```
 
-To begin using the Email Marketing Content Assistant, simply visit the web app: [Email Marketing Content Assistant](https://recommender-kvsn.onrender.com/).
+   The MovieMuse app will be accessible at `http://localhost:8501` in your web browser.
 
-## Web App Usage
+## Disclaimer
 
-1. Visit the web app link provided above.
-2. If you already have an OpenAI API key, proceed to Step 3. If not, obtain your API key from [here](https://platform.openai.com/account/api-keys).
-3. On the web app, enter your OpenAI API key.
-4. Input your business information, campaign goals, content preferences, and brand voice.
-5. Customize the email structure, product details (if applicable), and pain points.
-6. The AI-powered assistant will generate a series of five emails based on your inputs.
-7. Review and fine-tune the generated content to match your vision.
-8. Download or copy the generated email sequence for use in your email marketing campaign.
+Please note that MovieMuse relies on the quality of the emotional embeddings in the vector database. The accuracy of movie recommendations may vary based on the effectiveness of the language model and the emotional representations. Additionally, the app is designed to provide movie suggestions for entertainment purposes only and does not guarantee a perfect match with your emotions or preferences.
 
-## Contact
-
-If you have any questions, feedback, or need assistance, please don't hesitate to contact our support team at [vishwas.g217@gmail.com](mailto:vishwas.g217@gmail.com).
-
----
-
-With the Email Marketing Content Assistant, you can effortlessly craft compelling email sequences that resonate with your audience and drive engagement. Enjoy the simplicity of AI-powered content creation, backed by OpenAI's state-of-the-art language model. Happy marketing!
+Happy movie exploring with MovieMuse! 🎬🍿
